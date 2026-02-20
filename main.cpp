@@ -25,7 +25,27 @@ public:
 // Function prototypes
 void registerStudent(vector<Student> &list);
 void viewStudents(const vector<Student> &list);
+void searchStudent(const vector<Student>&list);
+void searchStudent(const vector<Student>&list);
+void searchStudent(const vector<Student> &list) {
+    string searchID;
+    cout << "\n--- Search Student by Index ---" << endl;
+    cout << "Enter Index Number: ";
+    cin >> searchID;
 
+    bool found = false;
+    for (const auto &s : list) {
+        if (s.getIndex() == searchID) {
+            cout << "Record Found!" << endl;
+            s.display();
+            found = true;
+            break;
+        }
+    }
+    if (!found) {
+        cout << "Student with Index " << searchID << " not found." << endl;
+    }
+}
 int main() {
     vector<Student> studentList;
     int choice;
@@ -35,16 +55,18 @@ int main() {
         cout << "\n--- EEE227 ATTENDANCE SYSTEM ---" << endl;
         cout << "1. Register Student" << endl;
         cout << "2. View All Registered Students" << endl;
-        cout << "3. Exit" << endl;
-        cout << "Select Option: ";
+        cout <<"3.Search Student"<< endl;
+        cout << "4.Exit"<< endl;
         cin >> choice;
 
         if (choice == 1) {
             registerStudent(studentList);
         } else if (choice == 2) {
             viewStudents(studentList);
+            } else if (choice == 3) {
+            searchStudent(studentList);
         }
-    } while (choice != 3);
+    } while (choice != 4);
 
     return 0;
 }
